@@ -6,7 +6,7 @@ app = FastAPI()
 def read_root():
   return {
     "status": 200,
-    "response": "Ok"
+    "response": "Ok",
     "output": None
   }
 
