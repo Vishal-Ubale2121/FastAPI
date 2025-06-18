@@ -15,27 +15,27 @@ pipeline{
 
         stage('Install Dependencies'){
             steps{
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
 
         stage('SonarQube Analysis'){
             steps{
                 withSonarQubeEnv('SonarQubeServer'){
-                    sh 'sonar-scanner'
+                    bat 'sonar-scanner'
                 }
             }
         }
 
         stage('Docker Build'){
             steps{
-                sh 'docker build -t $Docker_IMAGE .'
+                bat 'docker build -t $Docker_IMAGE .'
             }
         }
 
         stage('Docker Run'){
             steps{
-                sh 'docker run -d -p 8000:8000 --name fastapi_container $DOCKER_IMAGE'
+                bat 'docker run -d -p 8000:8000 --name fastapi_container $DOCKER_IMAGE'
             }
         }
 
@@ -43,7 +43,7 @@ pipeline{
 
     post{
         always{
-            sh 'docker rm -f fastapi_container || true'
+            bat 'docker rm -f fastapi_container || true'
         }
     }
 }
