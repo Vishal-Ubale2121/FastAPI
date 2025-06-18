@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('Clone Repository'){
             steps{
-                git 'https://github.com/Vishal-Ubale2121/FastAPI.git'
+                git branch: 'main', url: 'https://github.com/Vishal-Ubale2121/FastAPI.git'
             }
         }
 
