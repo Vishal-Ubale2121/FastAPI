@@ -40,10 +40,4 @@ pipeline{
         }
 
     }
-
-    post{
-        always{
-             bat 'docker rm -f fastapi-container || exit 0'
-        }
-    }
 }
