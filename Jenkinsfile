@@ -34,7 +34,9 @@ pipeline{
         }
 
         stage('Docker Run'){
-            sh 'docker run -d -p 8000:8000 --name fastapi_container $DOCKER_IMAGE'
+            steps{
+                sh 'docker run -d -p 8000:8000 --name fastapi_container $DOCKER_IMAGE'
+            }
         }
 
     }
