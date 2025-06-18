@@ -43,7 +43,7 @@ pipeline{
 
     post{
         always{
-            bat 'docker rm -f fastapi-container || true'
+             bat 'docker rm -f fastapi-container || exit 0'
         }
     }
 }
