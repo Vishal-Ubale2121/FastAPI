@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SONARQUBE = 'SonarQubeServer' // Defined in Jenkins global config
+        SONARQUBE = 'SonarQubeServer'
         DOCKER_IMAGE = 'fastapi-app:latest'
     }
 
@@ -15,14 +15,14 @@ pipeline {
 
         stage('Verify Python & pip') {
             steps {
-                bat 'python --version'
-                bat 'C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe --version'
+                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" --version'
+                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe" --version'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat 'C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe install -r requirements.txt'
+                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe" install -r requirements.txt'
             }
         }
 
@@ -37,6 +37,12 @@ pipeline {
         stage('Docker Build') {
             steps {
                 bat 'docker build -t %DOCKER_IMAGE% .'
+            }
+        }
+
+        stage('Docker Cleanup') {
+            steps {
+                bat 'docker rm -f fastapi-container || exit 0'
             }
         }
 
