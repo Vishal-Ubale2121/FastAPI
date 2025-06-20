@@ -1,43 +1,49 @@
-pipeline{
+pipeline {
     agent any
 
-    environment{
-        SONARQUBE = 'SonarQubeServer' // Name from Jenkins > Configure System
+    environment {
+        SONARQUBE = 'SonarQubeServer' // Defined in Jenkins global config
         DOCKER_IMAGE = 'fastapi-app:latest'
     }
 
-    stages{
-        stage('Clone Repository'){
-            steps{
+    stages {
+        stage('Clone Repository') {
+            steps {
                 git branch: 'main', url: 'https://github.com/Vishal-Ubale2121/FastAPI.git'
             }
         }
 
-        stage('Install Dependencies'){
-            steps{
-                bat 'pip install -r requirements.txt'
+        stage('Verify Python & pip') {
+            steps {
+                bat 'python --version'
+                bat 'C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe --version'
             }
         }
 
-        stage('SonarQube Analysis'){
-            steps{
-                withSonarQubeEnv('SonarQubeServer'){
+        stage('Install Dependencies') {
+            steps {
+                bat 'C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pip.exe install -r requirements.txt'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQubeServer') {
                     bat 'sonar-scanner'
                 }
             }
         }
 
-        stage('Docker Build'){
-            steps{
-                bat 'docker build -t $Docker_IMAGE .'
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t %DOCKER_IMAGE% .'
             }
         }
 
-        stage('Docker Run'){
-            steps{
-                bat 'docker run -d -p 8000:8000 --name fastapi-container $DOCKER_IMAGE'
+        stage('Docker Run') {
+            steps {
+                bat 'docker run -d -p 8000:8000 --name fastapi-container %DOCKER_IMAGE%'
             }
         }
-
     }
 }
