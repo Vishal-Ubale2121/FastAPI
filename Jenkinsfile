@@ -43,7 +43,7 @@ pipeline {
         stage('Docker Cleanup') {
             steps {
                 bat '''
-                docker rm -f fastapi-container || exit 0
+                docker rm -f fastapi-conatiner || exit 0
                 FOR /F "tokens=*" %%i IN ('docker ps -q --filter "publish=8500"') DO docker stop %%i
                 '''
             }
@@ -51,7 +51,7 @@ pipeline {
         
         stage('Docker Run') {
             steps {
-                bat 'docker run -d -p 8000:8000 --name fastapi-container %DOCKER_IMAGE%'
+                bat 'docker run -d -p 8000:8000 --name fastapi-conatiner %DOCKER_IMAGE%'
             }
         }
     }
