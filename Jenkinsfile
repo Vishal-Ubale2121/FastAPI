@@ -26,6 +26,12 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pytest.exe" tests/main_test.py --disable-warnings'
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
