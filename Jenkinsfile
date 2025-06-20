@@ -29,7 +29,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
-                    bat 'sonar-scanner'
+                    bat '"C:\\Users\\ubale\\sonar-scanner-7.1.0.4889-windows-x64\\bin\\sonar-scanner.bat"'
                 }
             }
         }
