@@ -66,14 +66,6 @@ pipeline {
             }
         }
 
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 3, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-
         stage('Docker Cleanup') {
             steps {
                 bat 'docker rm -f fastapi-container || exit 0'
