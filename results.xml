@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.328" timestamp="2025-06-23T10:50:12.762377+05:30" hostname="Ryzon-5"><testcase classname="" name="tests.test_main" time="0.000"><error message="collection failure">ImportError while importing test module 'C:\Users\ubale\Desktop\Desktop\Preparation\2025 - 26\Topics\Jenkins\Deployment\FastAPI\tests\test_main.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\ubale\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py:90: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_main.py:3: in &lt;module&gt;
+    from app.main import app
+E   ModuleNotFoundError: No module named 'app'</error></testcase></testsuite></testsuites>
