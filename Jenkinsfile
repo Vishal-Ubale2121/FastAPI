@@ -48,7 +48,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pytest.exe" --cov=app --cov-report=xml --junitxml=results.xml tests/main_test.py --disable-warnings'
+                bat '"C:\\Users\\ubale\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\pytest.exe" --cov=app --cov-report=xml --junitxml=results.xml tests/test_main.py --disable-warnings'
             }
         }
 
