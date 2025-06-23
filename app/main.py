@@ -1,4 +1,4 @@
-# Version 1.24
+# Version 1.25
 from fastapi import FastAPI
 import re
 
